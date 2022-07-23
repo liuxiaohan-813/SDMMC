@@ -18,3 +18,6 @@ IO Connection information:
     Connect SDIO0 SDIO0_SDDATA1    to SDCard DAT1
     Connect SDIO0 SDIO0_SDDATA2    to SDCard DAT2
     Connect SDIO0 SDIO0_SDDATA3    to SDCard DAT3
+
+Note:
+    If we upload the program to operate SDCard which would be destory the FatFs.

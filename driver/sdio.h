@@ -17,60 +17,59 @@ extern "C"
 
 #include "sdcard.h"
 
-        /**
-         * @brief SDIO
-         */
+/**
+  * @brief SDIO
+  */
 
-        typedef struct
-        {
-            __IOM uint32_t RX_SADDR;           /*!< Offset: 0x000 (R/W) uDMA RX SDIO buffer base address configuration register */
-            __IOM uint32_t RX_SIZE;            /*!< Offset: 0x004 (R/W) uDMA RX SDIO buffer size configuration register */
-            __IOM uint32_t RX_CFG;             /*!< Offset: 0x008 (R/W) uDMA RX SDIO stream configuration register */
-            __IOM uint32_t CR;                 /*!< Offset: 0x00c (R/W) SDIO control register */
-            __IOM uint32_t TX_SADDR;           /*!< Offset: 0x010 (R/W) uDMA TX SDIO buffer base address configuration register */
-            __IOM uint32_t TX_SIZE;            /*!< Offset: 0x014 (R/W) uDMA TX SDIO buffer size configuration register */
-            __IOM uint32_t TX_CFG;             /*!< Offset: 0x018 (R/W) uDMA TX SDIO stream configuration register */
-            __IOM uint32_t VERSION;            /*!< Offset: 0x01c (R/W) SDIO version */
-            __IOM uint32_t CMD_OP;             /*!< Offset: 0x020 (R/W) SDIO command */
-            __IOM uint32_t CMD_ARG;            /*!< Offset: 0x024 (R/W) SDIO argument */
-            __IOM uint32_t DATA_SETUP;         /*!< Offset: 0x028 (R/W) SDIO Data transfer setup */
-            __IOM uint32_t START;              /*!< Offset: 0x02c (R/W) SDIO Start */
-            __IOM uint32_t RSP0;               /*!< Offset: 0x030 (R/W) SDIO Response 0 */
-            __IOM uint32_t RSP1;               /*!< Offset: 0x034 (R/W) SDIO Response 1 */
-            __IOM uint32_t RSP2;               /*!< Offset: 0x038 (R/W) SDIO Response 2 */
-            __IOM uint32_t RSP3;               /*!< Offset: 0x03c (R/W) SDIO Response 3 */
-            __IOM uint32_t CLK_DIV;            /*!< Offset: 0x040 (R/W) SDIO Clock Divider */
-            __IOM uint32_t STATUS;             /*!< Offset: 0x044 (R/W) SDIO STATUS register */
-            __IOM uint32_t STOP_CMD_OP;        /*!< Offset: 0x048 (R/W) SDIO STOP command op */
-            __IOM uint32_t STOP_CMD_ARG;       /*!< Offset: 0x04c (R/W) SDIO STOP command arg */
-            __IOM uint32_t DATA_TIMEOUT_CNT;   /*!< Offset: 0x050 (R/W) SDIO data timeout delay counter register */
-            __IOM uint32_t CMD_POWERUP_CNT;    /*!< Offset: 0x054 (R/W) SDIO command power up counter config */
-            __IOM uint32_t CMD_WAIT_RSP_CNT;   /*!< Offset: 0x058 (R/W) SDIO wait respone counter congfig */
-            __IOM uint32_t CMD_WAIT_EOT_CNT;   /*!< Offset: 0x05c (R/W) SDIO wait eot counter congfig */
-            __IOM uint32_t TX_DATA;            /*!< Offset: 0x060 (R/W) SDIO send data */
-            __IOM uint32_t RX_DATA;            /*!< Offset: 0x064 (R/W) SDIO receive data */
-            __IOM uint32_t TX_MARK;            /*!< Offset: 0x068 (R/W) SDIO Tx FIFO watermark */
-            __IOM uint32_t RX_MARK;            /*!< Offset: 0x06c (R/W) SDIO Rx FIFO watermark */
-            __IOM uint32_t IP;                 /*!< Offset: 0x070 (R/W) SDIO interrupt pending */
-            __IOM uint32_t IE;                 /*!< Offset: 0x074 (R/W) SDIO interrupt enable */
-            __IOM uint32_t SAMPLE_DDR;         /*!< Offset: 0x078 (R/W) SDIO ddr sample select */
-            __IOM uint32_t RESERVED0[2];       /*!< RESERVED */
-            __IOM uint32_t DATA_TX_DELAY_CNT;  /*!< Offset: 0x084 (R/W) SDIO data tx delay counter register */
-            __IOM uint32_t DATA_CRC_TOKEN_CNT; /*!< Offset: 0x088 (R/W) SDIO crc token timeout delay counter register */
-            __IOM uint32_t CRC_VALUE;          /*!< Offset: 0x08c (R/W) SDIO cmd crc value */
-        } SDIO_TypeDef;
+typedef struct {
+    __IOM uint32_t RX_SADDR;                            /*!< Offset: 0x000 (R/W) uDMA RX SDIO buffer base address configuration register */
+    __IOM uint32_t RX_SIZE;                             /*!< Offset: 0x004 (R/W) uDMA RX SDIO buffer size configuration register */
+    __IOM uint32_t RX_CFG;                              /*!< Offset: 0x008 (R/W) uDMA RX SDIO stream configuration register */
+    __IOM uint32_t CR;                                  /*!< Offset: 0x00c (R/W) SDIO control register */
+    __IOM uint32_t TX_SADDR;                            /*!< Offset: 0x010 (R/W) uDMA TX SDIO buffer base address configuration register */
+    __IOM uint32_t TX_SIZE;                             /*!< Offset: 0x014 (R/W) uDMA TX SDIO buffer size configuration register */
+    __IOM uint32_t TX_CFG;                              /*!< Offset: 0x018 (R/W) uDMA TX SDIO stream configuration register */
+    __IOM uint32_t VERSION;                             /*!< Offset: 0x01c (R/W) SDIO version */
+    __IOM uint32_t CMD_OP;                              /*!< Offset: 0x020 (R/W) SDIO command */
+    __IOM uint32_t CMD_ARG;                             /*!< Offset: 0x024 (R/W) SDIO argument */
+    __IOM uint32_t DATA_SETUP;                          /*!< Offset: 0x028 (R/W) SDIO Data transfer setup */
+    __IOM uint32_t START;                               /*!< Offset: 0x02c (R/W) SDIO Start */
+    __IOM uint32_t RSP0;                                /*!< Offset: 0x030 (R/W) SDIO Response 0 */
+    __IOM uint32_t RSP1;                                /*!< Offset: 0x034 (R/W) SDIO Response 1 */
+    __IOM uint32_t RSP2;                                /*!< Offset: 0x038 (R/W) SDIO Response 2 */
+    __IOM uint32_t RSP3;                                /*!< Offset: 0x03c (R/W) SDIO Response 3 */
+    __IOM uint32_t CLK_DIV;                             /*!< Offset: 0x040 (R/W) SDIO Clock Divider */
+    __IOM uint32_t STATUS;                              /*!< Offset: 0x044 (R/W) SDIO STATUS register */
+    __IOM uint32_t STOP_CMD_OP;                         /*!< Offset: 0x048 (R/W) SDIO STOP command op */
+    __IOM uint32_t STOP_CMD_ARG;                        /*!< Offset: 0x04c (R/W) SDIO STOP command arg */
+    __IOM uint32_t DATA_TIMEOUT_CNT;                    /*!< Offset: 0x050 (R/W) SDIO data timeout delay counter register */
+    __IOM uint32_t CMD_POWERUP_CNT;                     /*!< Offset: 0x054 (R/W) SDIO command power up counter config */
+    __IOM uint32_t CMD_WAIT_RSP_CNT;                    /*!< Offset: 0x058 (R/W) SDIO wait respone counter congfig */
+    __IOM uint32_t CMD_WAIT_EOT_CNT;                    /*!< Offset: 0x05c (R/W) SDIO wait eot counter congfig */
+    __IOM uint32_t TX_DATA;                             /*!< Offset: 0x060 (R/W) SDIO send data */
+    __IOM uint32_t RX_DATA;                             /*!< Offset: 0x064 (R/W) SDIO receive data */
+    __IOM uint32_t TX_MARK;                             /*!< Offset: 0x068 (R/W) SDIO Tx FIFO watermark */
+    __IOM uint32_t RX_MARK;                             /*!< Offset: 0x06c (R/W) SDIO Rx FIFO watermark */
+    __IOM uint32_t IP;                                  /*!< Offset: 0x070 (R/W) SDIO interrupt pending */
+    __IOM uint32_t IE;                                  /*!< Offset: 0x074 (R/W) SDIO interrupt enable */
+    __IOM uint32_t SAMPLE_DDR;                          /*!< Offset: 0x078 (R/W) SDIO ddr sample select */
+    __IOM uint32_t RESERVED0[2];                        /*!< RESERVED */
+    __IOM uint32_t DATA_TX_DELAY_CNT;                   /*!< Offset: 0x084 (R/W) SDIO data tx delay counter register */
+    __IOM uint32_t DATA_CRC_TOKEN_CNT;                  /*!< Offset: 0x088 (R/W) SDIO crc token timeout delay counter register */
+    __IOM uint32_t CRC_VALUE;                           /*!< Offset: 0x08c (R/W) SDIO cmd crc value */
+}SDIO_TypeDef;
 
-        typedef struct
-        {
-            __IOM uint32_t DMA_CFG_PCTRL;     /*!< Clock Gating Register (only present when peripherals
-                                                  support is configured on rtl level) */
-            __IOM uint32_t DMA_CFG_EVENT;     /*!< Event ID Register (only present when peripherals support
-                                                  is configured on rtl level) */
-            __IM uint32_t RESERVED0[766];     /*!< RESERVED */
-            __IOM uint32_t DMA_PCH0_IRQ_EN;   /*!< P2M Channel0 Interrupt Enable Register */
-            __IOM uint32_t DMA_PCH0_IRQ_STAT; /*!< P2M Channel0 Interrupt Status Flag Register */
-            __IOM uint32_t DMA_PCH0_IRQ_CLR;  /*!< P2M Channel0 Interrupt Clear Status Register */
-        } SDIO_DMA_TypeDef;
+typedef struct {
+    __IOM uint32_t DMA_CFG_PCTRL;                       /*!< Clock Gating Register (only present when peripherals
+                                                            support is configured on rtl level) */
+    __IOM uint32_t DMA_CFG_EVENT;                       /*!< Event ID Register (only present when peripherals support
+                                                            is configured on rtl level) */
+    __IM  uint32_t RESERVED0[766];                      /*!< RESERVED */
+    __IOM uint32_t DMA_PCH0_IRQ_EN;                     /*!< P2M Channel0 Interrupt Enable Register */
+    __IOM uint32_t DMA_PCH0_IRQ_STAT;                   /*!< P2M Channel0 Interrupt Status Flag Register */
+    __IOM uint32_t DMA_PCH0_IRQ_CLR;                    /*!< P2M Channel0 Interrupt Clear Status Register */
+} SDIO_DMA_TypeDef;
+
 
 /* ===== SDIO_CR Register Definition===== */
 #define SDIO_SDIO_CR_DMA_EN_MASK BIT(0) /*!< uDMA mode enable */
