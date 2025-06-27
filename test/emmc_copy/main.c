@@ -1,15 +1,15 @@
-/*--------------------------- Include ---------------------------*/
 #include "ns_sdk_hal.h"
 
-#include <ctype.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include "ff.h"
 #include "diskio.h"
+#include "ff.h"
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "sdmmc.h"
 
 /*-------------------------- Variable ---------------------------*/
+
 #define FATFS_WR_SIZE 1024*8
 
 extern SDMMC_HandleTypeDef g_sd_handle;                    /* SDCard handle */
@@ -32,9 +32,9 @@ void sdio_config(void)
     SDIO_DmaInterruptEn(g_sd_handle.Instance, SDIO_TX_FTRANS_IRQ_EN, ENABLE);
 
     g_sd_handle.Sdio_cfg.BusMode = SDIO_SDR_MODE;
-    g_sd_handle.Sdio_cfg.BusWidth = SDIO_4LINE;
+    g_sd_handle.Sdio_cfg.BusWidth = SDIO_8LINE;
     g_sd_handle.Sdio_cfg.DeviceMode = SDIO_DMA_MODE;
-    g_sd_handle.Sdio_cfg.CardType = SDIO_HIGH_CAPACITY_SD_CARD;
+    g_sd_handle.Sdio_cfg.CardType = SDIO_MULTIMEDIA_CARD;
 }
 
 __attribute__((aligned(4))) uint8_t buffer_all[FATFS_WR_SIZE];
@@ -47,10 +47,10 @@ void copyfile(uint8_t *srcfilename, uint8_t *destfilename)
     FIL file_dest;
 
     f_res = f_open(&file_src, srcfilename,
-                    FA_OPEN_EXISTING | FA_READ | FA_OPEN_ALWAYS);
+                   FA_OPEN_EXISTING | FA_READ | FA_OPEN_ALWAYS);
     if (f_res == FR_OK) {
         f_res = f_open(&file_dest, destfilename,
-                        FA_CREATE_ALWAYS | FA_WRITE | FA_READ | FA_OPEN_ALWAYS);
+                       FA_CREATE_ALWAYS | FA_WRITE | FA_READ | FA_OPEN_ALWAYS);
         if (f_res != FR_OK) {
             return;
         }
@@ -82,6 +82,7 @@ int main(void)
     sdio0_set_rst(ENABLE);
     
     #endif
+    
     sdio_config();
 
     FIL file;
@@ -91,12 +92,13 @@ int main(void)
 
     BYTE work[FF_MAX_SS]; /* Working buffer */
 
+    /* filesystem parameter: format = FAT32, other use default val */
     MKFS_PARM fs_parm = {
-        /* filesystem parameter: format = FAT32, other use default val */
+    /* filesystem parameter: format = FAT32, other use default val */
         .fmt = FS_FAT32, .n_fat = 0, .au_size = 0, .align = 0, .n_root = 0,
     };
 
-    res = f_mount(&fatfs, "0:", 1);
+    res = f_mount(&fatfs, "0:", 1); 
 
     if (res == FR_NO_FILESYSTEM) {
         printf("flahs has no file system, start make filesystem...\n");
@@ -106,7 +108,7 @@ int main(void)
             goto fail;
         } else {
             printf("f_mkfs successful!\n");
-            res = f_mount(&fatfs, "0:", 1);
+            res = f_mount(&fatfs, "0:", 1); 
         }
     }
     else if(res == FR_OK){
@@ -117,7 +119,7 @@ int main(void)
         goto fail;
     }
 
-    f_setlabel((const TCHAR *)"0:Nuclei");     
+    f_setlabel((const TCHAR *)"0:Nuclei"); 
 
     res = f_open(&file, SD_FileName, FA_OPEN_ALWAYS | FA_WRITE); 
     if((res & FR_DENIED) == FR_DENIED)
