@@ -1,2 +1,2 @@
-# SDMMC
-sdio read from &amp;write to sdcard or emmc driver and test.
+# SDIO hal driver、EMMC/SDcard device driver
+- Mount the fat32 file system to the emmc and sd card through the sdio interface
